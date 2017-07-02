@@ -10,7 +10,9 @@ class EventHandler {
         WindowObject * mainWindow;
     public:
         static void KeyPressCallback(GLFWwindow *window, int key, int scancode, int action, int mods);
+        static void MouseButtonPressCallback(GLFWwindow *window, int button, int action, int mods);
         static void WindowShouldCloseCallback(GLFWwindow *window);
+        static void MouseMotionCallback(GLFWwindow *window, double xPos, double yPos);
         EventHandler();
         EventHandler(WindowObject *mW);
         void RegisterCallbacks();

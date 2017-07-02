@@ -16,10 +16,10 @@ class WindowObject {
         int Height;
         Vector3 mouseAxis;
 
-        WindowObject(int width, int height, GameObject * camera);
-        void InstanceGLFWWindow();
+        WindowObject(int width, int height);
+        void InstantiateGLFWWindow();
         void MainFrame();
-        void DealWithEvents();
+        void SetRenderingCamera(GameObject *camera);
 };
 
 #endif

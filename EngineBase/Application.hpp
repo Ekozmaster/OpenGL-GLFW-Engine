@@ -10,7 +10,7 @@ class Application {
     private:
         int defaultWidth = 720;
         int defaultHeight = 480;
-        SceneManager sceneManager;
+        SceneManager *sceneManager;
         EventHandler eventHandler;
         LinkedList<WindowObject> windows = *(new LinkedList<WindowObject>());
 

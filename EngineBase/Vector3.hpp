@@ -1,6 +1,7 @@
 #ifndef VECTOR3_HPP
 #define VECTOR3_HPP
 #include<cstdio>
+#include<glm/glm.hpp>
 
 // Abstraction to work with vectors in space
 class Vector3 {
@@ -39,6 +40,7 @@ class Vector3 {
         float Lenght();
 
         Vector3 normalized();
+        glm::vec3 ToGLMVec3();
 
         static Vector3 up();
         static Vector3 down();

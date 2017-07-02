@@ -72,6 +72,7 @@ float Input::GetAxis(char axisName[]){
 };
 
 void Input::UpdateKeysState(GLFWwindow *window, int key, int scancode, int action, int mods){
+
     if(action == GLFW_PRESS){
         keysState[GLFWToKeyCodeIdx(key)] = true;
     } else if(action == GLFW_RELEASE){

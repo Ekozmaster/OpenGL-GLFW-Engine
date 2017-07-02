@@ -12,26 +12,25 @@ EventHandler::EventHandler(){
 void EventHandler::RegisterCallbacks(){
     glfwSetKeyCallback(mainWindow->glfwInstance, KeyPressCallback);
     glfwSetWindowCloseCallback(mainWindow->glfwInstance, WindowShouldCloseCallback);
+    glfwSetMouseButtonCallback(mainWindow->glfwInstance, MouseButtonPressCallback);
+
+    glfwSetCursorPosCallback(mainWindow->glfwInstance, MouseMotionCallback);
 }
-/*
-void EventHandler::RouteXEvents(XEvent *event, Display *dpy){
-    if(event->type == Expose){
-        //windowDrawer.RenderFrame();
-    } else if(event->type == KeyPress || event->type == KeyRelease){
-        Input::Instance()->UpdateKeysState(event, dpy);
-    } else if(event->type == MotionNotify){
-        Input::Instance()->UpdateMouseMotion(event, dpy);
-    } else if(event->type == ButtonPress || event->type == ButtonRelease){
-        Input::Instance()->UpdateMouseButtons(event, dpy);
-    }
-};
-//*/
+
 void EventHandler::KeyPressCallback(GLFWwindow *window, int key, int scancode, int action, int mods){
     Input::Instance()->UpdateKeysState(window, key, scancode, action, mods);
+};
+
+void EventHandler::MouseButtonPressCallback(GLFWwindow *window, int button, int action, int mods){
+    Input::Instance()->UpdateKeysState(window, button, 0, action, mods);
 };
 
 void EventHandler::WindowShouldCloseCallback(GLFWwindow *window){
     glfwDestroyWindow(window);
     glfwTerminate();
     exit(EXIT_SUCCESS);
+}
+
+void EventHandler::MouseMotionCallback(GLFWwindow *window, double xPos, double yPos){
+    Input::Instance()->UpdateMouseMotion(window, xPos, yPos);
 }

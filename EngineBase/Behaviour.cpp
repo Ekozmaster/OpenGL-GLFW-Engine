@@ -34,6 +34,10 @@ void Behaviour::Update(){
 
 }
 
+void Behaviour::Render(){
+
+}
+
 
 
 

@@ -15,5 +15,8 @@
 #include "EngineBase/LinkedList.cpp"
 #include "EngineBase/SceneManager.cpp"
 #include "EngineBase/Application.cpp"
+#include "EngineBase/Mesh.cpp"
+#include "EngineBase/MeshRenderer.cpp"
 
 #include "BehaviourScripts/SceneCamera.hpp"
+#include "BehaviourScripts/RotateWithTime.hpp"

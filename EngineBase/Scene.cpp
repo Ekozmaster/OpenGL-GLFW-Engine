@@ -1,7 +1,40 @@
 #include"Scene.hpp"
+#include"MeshRenderer.hpp"
+#include"../BehaviourScripts/SceneCamera.hpp"
+#include"../BehaviourScripts/RotateWithTime.hpp"
+#include"GameObject.hpp"
+#include"Mesh.hpp"
 
 Scene::Scene(){
 }
+
+Scene *Scene::CreateDefaultTestScene(){
+    Scene *scene = new Scene();
+    //currentScene = new Scene();
+    scene->mainCamera = new GameObject();
+    scene->mainCamera->AddComponent<Camera>();
+    scene->mainCamera->transform.position = Vector3(0, 0, -5.0f);
+    scene->mainCamera->AddComponent<SceneCamera>();
+
+    // Creating a default cube.
+    GameObject *cb = new GameObject();
+    cb->transform.rotation = Quaternion::Euler(0.0f, 0.0f, 0.0f);
+    cb->AddComponent<MeshRenderer>();
+    cb->AddComponent<RotateWithTime>();
+    MeshRenderer *meshRen = cb->GetComponent<MeshRenderer>();
+    Mesh *mesh = new Mesh();
+    //mesh->vertices = (Vector3 *)malloc(sizeof(Vector3) * 36 * 2);
+    mesh->vertices = verts;
+    mesh->normals = vertsNormals;
+
+    mesh->triangles = (unsigned int*)cubeElements;
+    meshRen->mesh = mesh;
+    meshRen->UpdateMeshProperties();
+
+    scene->RegisterObject(cb);
+    return scene;
+};
+
 int Scene::GetAvailableID(){
     bool found = false;
     int i=0;

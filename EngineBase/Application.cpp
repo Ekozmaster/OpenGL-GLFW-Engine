@@ -7,14 +7,13 @@ Application::Application(){
 }
 
 void Application::Init(){
-    //glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
-    //glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-    sceneManager = *(new SceneManager());
-    sceneManager.CreateNewScene();
     if(!glfwInit()){
         exit(EXIT_FAILURE);
     }
     SetupSystem();
+    sceneManager = SceneManager::Instance();
+    sceneManager->CreateNewScene();
+    windows.head->data->SetRenderingCamera(sceneManager->GetCurrentScene()->mainCamera);
 }
 
 void Application::SetupSystem(){
@@ -23,13 +22,12 @@ void Application::SetupSystem(){
     LoadApplicationDefaultWindows();
     eventHandler = EventHandler(windows.head->data);
     eventHandler.RegisterCallbacks();
-
-    //glfwSetKeyCallback(windows.head->data);
+    glfwSwapInterval(1);
 }
 
 void Application::LoadApplicationDefaultWindows(){
-    WindowObject *defaultWindow = new WindowObject(defaultWidth, defaultHeight, sceneManager.currentScene.mainCamera);
-    defaultWindow->InstanceGLFWWindow();
+    WindowObject *defaultWindow = new WindowObject(defaultWidth, defaultHeight);
+    defaultWindow->InstantiateGLFWWindow();
     LinkedList_Node<WindowObject> *node = new LinkedList_Node<WindowObject>();
     node->data = defaultWindow;
     windows.AddAtTail(node);
@@ -42,8 +40,8 @@ void Application::MainLoop(){
         temp->data->MainFrame();
         temp = temp->next;
     }
-    sceneManager.currentScene.mainCamera->UpdateBehaviours();
-    sceneManager.currentScene.MainUpdate();
+    sceneManager->GetCurrentScene()->mainCamera->UpdateBehaviours();
+    sceneManager->GetCurrentScene()->MainUpdate();
     glfwPollEvents();
     if(glfwWindowShouldClose(windows.head->data->glfwInstance)){
         Quit();

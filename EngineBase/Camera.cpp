@@ -22,5 +22,4 @@ void Camera::Start(){
 void Camera::Update(){
     eyePose = gameObject->transform.position;
     pivotPoint = gameObject->transform.rotation * Vector3::forward();
-    gluLookAt(eyePose.x, eyePose.y, eyePose.z, eyePose.x + pivotPoint.x, eyePose.y + pivotPoint.y, eyePose.z + pivotPoint.z, upDirection.x, upDirection.y, upDirection.z);
 }

@@ -19,6 +19,14 @@ Quaternion::Quaternion(){
     rotMatrix = buildMatrix(x,y,z,w);
 };
 
+glm::quat Quaternion::ToGLMQuat(){
+    return glm::quat(w, x, y, z);
+};
+
+glm::mat4 Quaternion::ToGLMMat4(){
+    return glm::mat4_cast(this->ToGLMQuat());
+};
+
 // Default zero rotation.
 Quaternion Quaternion::identity(){
     return Quaternion(0,0,0,1);

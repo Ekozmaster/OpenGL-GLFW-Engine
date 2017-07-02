@@ -1,4 +1,4 @@
-#include <GL/glew.h>
+/*#include <GL/glew.h>
 #include <GL/glext.h>
 #include <GLFW/glfw3.h>
 #include <glm/glm.hpp>
@@ -23,6 +23,7 @@ GLfloat cube[] = {
      0.5f, -0.5f,  0.5f
 };
 //*/
+/*
 static void KeyCallback(GLFWwindow *window, int key, int scancode, int action, int mods){
     if(key == GLFW_KEY_P){
         glfwTerminate();
@@ -144,11 +145,11 @@ int main(void)
         glDrawArrays(GL_TRIANGLES, 0, 36);
         glDisableClientState(GL_COLOR_ARRAY);
         glDisableClientState(GL_VERTEX_ARRAY);
-        */
+        //*/
         
 
 
-
+/*
         glfwSwapBuffers(window);
         glfwPollEvents();
     }
@@ -156,3 +157,4 @@ int main(void)
     glfwTerminate();
     return 0;
 }
+//*/

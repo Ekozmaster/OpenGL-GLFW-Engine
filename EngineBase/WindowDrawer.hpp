@@ -10,6 +10,12 @@
 #include<GLFW/glfw3.h>
 #include"Vector3.hpp"
 #include"GameObject.hpp"
+#include"Camera.hpp"
+#include"MeshRenderer.hpp"
+#include<glm/glm.hpp>
+#include<glm/gtc/matrix_transform.hpp>
+#include<glm/gtc/type_ptr.hpp>
+//#include<glm/gtc/quaternion.hpp>
 
 class WindowDrawer {
     public:
@@ -17,14 +23,22 @@ class WindowDrawer {
         int *Height;
         GameObject *mainCamera;
         GLint shaderProgram;
+        glm::mat4 projMatrix;
+        glm::mat4 modelMatrix;
+        glm::mat4 transformMatrix;
+        GLuint vao, vbo, elementBuffer;
+        MeshRenderer meshRend;
+
+        GLchar *vertexSource;
+        GLchar *fragmentSource;
 
         WindowDrawer();
-        WindowDrawer(int *width, int *height, GameObject * camera);
+        WindowDrawer(int *width, int *height);
         void InitX11OpenGL();
         void ClearScreen();
         void RenderFrame(GLFWwindow *window);
         void SetupViewMatrix();
-        void CamPose(Vector3 eyePose, Vector3 refPose, Vector3 upPose);
+        void CamPose(Camera *cam);
 };
 
 #endif

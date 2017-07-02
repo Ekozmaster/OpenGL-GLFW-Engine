@@ -11,8 +11,6 @@ int main(int argc, char *argv[]) {
     Application *app = new Application();
     app->Init();
 
-    //GLFWwindow *window;
-    //window = glfwCreateWindow(720, 480, "HUEHEU", NULL, NULL);
     while(1) {
         app->MainLoop();
 

@@ -2,46 +2,31 @@
 #include<string.h>
 #include<GLFW/glfw3.h>
 
-WindowObject::WindowObject(int width, int height, GameObject * camera){
+WindowObject::WindowObject(int width, int height){
     Width = width;
     Height = height;
-    Input::Instance()->SetScreenSize(Vector3(Width, Height,0));
-    windowDrawer = WindowDrawer(&width, &height, camera);
+    //Input::Instance()->SetScreenSize(Vector3(Width, Height,0));
+    windowDrawer = WindowDrawer(&Width, &Height);
 };
 
-void WindowObject::InstanceGLFWWindow(){
+void WindowObject::InstantiateGLFWWindow(){
     glfwInstance = glfwCreateWindow(Width, Height, "GLFW/OpenGL Window", NULL, NULL);
     if(!glfwInstance){
-        printf("Null Window!\n");
+        printf("Null GLFW Window!\n");
+        glfwTerminate();
         exit(EXIT_FAILURE);
     }
     glfwMakeContextCurrent(glfwInstance);
+    glewInit();
+    windowDrawer.InitX11OpenGL();
 }
 
 void WindowObject::MainFrame(){
     windowDrawer.RenderFrame(glfwInstance);
-    DealWithEvents();
 };
 
-void WindowObject::DealWithEvents(){
-    /*
-    if(XEventsQueued(windowDrawer.dpy, QueuedAlready)){
-        XNextEvent(windowDrawer.dpy, &xev);
-        eventHandler.RouteXEvents(&xev, windowDrawer.dpy);
-        if(xev.type != Expose){
-            //memset(&redrawEvent, 0, sizeof(redrawEvent));
-            redrawEvent.type = Expose;
-            redrawEvent.xexpose.window = windowDrawer.win;
-            //XSendEvent(windowDrawer.dpy, windowDrawer.win, False, ExposureMask, &redrawEvent);
-            //XFlush(windowDrawer.dpy);
-            eventHandler.RouteXEvents((XEvent *)&redrawEvent, windowDrawer.dpy);
-        }
-    } else {
-        memset(&redrawEvent, 0, sizeof(redrawEvent));
-        redrawEvent.type = Expose;
-        redrawEvent.xexpose.window = windowDrawer.win;
-        XSendEvent(windowDrawer.dpy, windowDrawer.win, False, ExposureMask, &redrawEvent);
-        XFlush(windowDrawer.dpy);
-        eventHandler.RouteXEvents((XEvent *)&redrawEvent, windowDrawer.dpy);
-    }//*/
-};
+void WindowObject::SetRenderingCamera(GameObject *camera){
+    windowDrawer.mainCamera = camera;
+}
+
+

@@ -65,8 +65,8 @@ struct KeyCodeToIdx {
         const static int Delete = 52;
 
         const static int LeftMouseButton = 53;
-        const static int MiddleMouseButton = 54;
-        const static int RightMouseButton = 55;
+        const static int RightMouseButton = 54;
+        const static int MiddleMouseButton = 55;
         const static int WheelUpMouseButton = 56;
         const static int WheelDownMouseButton = 57;
         // 58 Keys Mapped.
@@ -133,8 +133,8 @@ struct KeyCodeToGLFW {
         const static int Delete = GLFW_KEY_DELETE;
 
         const static int LeftMouseButton = GLFW_MOUSE_BUTTON_1;
-        const static int MiddleMouseButton = GLFW_MOUSE_BUTTON_2;
-        const static int RightMouseButton = GLFW_MOUSE_BUTTON_3;
+        const static int RightMouseButton = GLFW_MOUSE_BUTTON_2;
+        const static int MiddleMouseButton = GLFW_MOUSE_BUTTON_3;
         const static int WheelUpMouseButton = GLFW_MOUSE_BUTTON_4;
         const static int WheelDownMouseButton = GLFW_MOUSE_BUTTON_5;
 
@@ -202,8 +202,8 @@ inline int GLFWToKeyCodeIdx(int key) {
         case GLFW_KEY_DELETE: return KeyCodeToIdx::Delete;
 
         case GLFW_MOUSE_BUTTON_1: return KeyCodeToIdx::LeftMouseButton;
-        case GLFW_MOUSE_BUTTON_2: return KeyCodeToIdx::MiddleMouseButton;
-        case GLFW_MOUSE_BUTTON_3: return KeyCodeToIdx::RightMouseButton;
+        case GLFW_MOUSE_BUTTON_2: return KeyCodeToIdx::RightMouseButton;
+        case GLFW_MOUSE_BUTTON_3: return KeyCodeToIdx::MiddleMouseButton;
         case GLFW_MOUSE_BUTTON_4: return KeyCodeToIdx::WheelUpMouseButton;
         case GLFW_MOUSE_BUTTON_5: return KeyCodeToIdx::WheelDownMouseButton;
     }

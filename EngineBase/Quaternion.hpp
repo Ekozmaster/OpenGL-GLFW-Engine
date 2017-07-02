@@ -8,6 +8,9 @@
 
 #include"Vector3.hpp"
 #include"Mathf.hpp"
+#include<glm/glm.hpp>
+#include<glm/gtc/matrix_transform.hpp>
+#include<glm/gtc/type_ptr.hpp>
 
 
 #define PI 3.14159265f
@@ -36,6 +39,9 @@ class Quaternion {
         std::array<std::array<float, 4>, 4> rotMatrix;
         Quaternion(float X, float Y, float Z, float W);
         Quaternion();
+
+        glm::quat ToGLMQuat();
+        glm::mat4 ToGLMMat4();
 
         std::array<std::array<float, 4>, 4> buildMatrix(float x, float y, float z, float w);
         // Converts from euler (x,y,z) angles to a Quaternion.

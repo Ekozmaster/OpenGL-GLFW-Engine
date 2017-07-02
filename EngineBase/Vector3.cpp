@@ -77,6 +77,10 @@ float Vector3::Lenght(){
     return sqrt(x * x + y * y + z * z);
 }
 
+glm::vec3 Vector3::ToGLMVec3(){
+    return glm::vec3(x, y, z);
+}
+
 Vector3 Vector3::normalized(){
     float lenght = Lenght();
     return Vector3(x/lenght, y/lenght, z/lenght);
